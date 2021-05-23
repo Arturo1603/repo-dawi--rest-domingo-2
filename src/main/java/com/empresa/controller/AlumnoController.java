@@ -7,6 +7,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,4 +64,15 @@ public class AlumnoController {
 			return ResponseEntity.badRequest().build();
 		}
 	} 
-}
+	
+	@GetMapping("/{dni}")
+	public ResponseEntity<List<Alumno>> buscapordni(@PathVariable("dni") String dni){
+		System.out.println(">>> inicio >>> lista " );
+		List<Alumno> optAlumno = service.listaPorDni(dni);
+		
+			service.listaPorDni(dni);
+			return ResponseEntity.ok(optAlumno);
+		
+		}
+	} 
+
